@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="alert-btn">Click</button>
+    <script>
+        function createEle(){
+            const div = document.createElement('div');
+            div.innerHTML = 'hello';
+            div.style.display = 'none';
+            document.body.appendChild(div);
+            return div;
+        }
+        let instance;
+        const createSingleElemnet = function(){
+            return (fn)=>{
+                if(!instance) instance = fn.apply(null, arguments);
+                return instance;
+            }
+        }
+        document.getElementById('alert-btn').addEventListener('click', ()=>{
+            const div = createSingleElemnet(createEle)();
+            div.style.display = 'block';
+        });
+    </script>
+</body>
+</html>

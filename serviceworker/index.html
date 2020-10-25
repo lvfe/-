@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="hello">hello</div>
+        <script type="module">
+        console.log(412333);
+        let url = `http://localhost:3000/tt`;
+        setTimeout(()=>{
+            fetch(url,{method: 'GET'}).then(res=>{
+                console.log(12333, res);
+                document.getElementById('hello').innerHTML = "1"+JSON.stringify(res);
+            });
+        }, 3000);
+        setInterval(()=>{
+            fetch(url,{method: 'GET'}).then(res=>{
+                console.log(12333, res);
+                document.getElementById('hello').innerHTML = document.getElementById('hello').innerHTML+JSON.stringify(res);
+            });
+        }, 5000);
+        if('serviceWorker' in navigator){
+            window.addEventListener('load', ()=>{
+                navigator.serviceWorker.register('/sw.js', {scope: '/'})
+                .then(()=>{
+                    console.log('service worker register success!');
+                })
+                .catch(err=>{
+                    console.log('service worker registration error');
+                })
+            })
+        }
+    </script>
+    </body>
+</html>

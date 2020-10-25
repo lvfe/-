@@ -6,7 +6,7 @@ import { add, minus, asyncAdd } from '../../actions/counter'
 import withLog from './withLog';
 import './index.css'
 
-@withLog
+
 @connect(({ counter }) => ({
   counter
 }), (dispatch) => ({
@@ -20,6 +20,7 @@ import './index.css'
     dispatch(asyncAdd())
   }
 }))
+@withLog
 class Index extends Component {
   componentWillReceiveProps (nextProps) {
     console.log(this.props, nextProps)
@@ -27,7 +28,9 @@ class Index extends Component {
 
   componentWillUnmount () { }
 
-  componentDidShow () { }
+  componentDidShow () { 
+    
+  }
 
   componentDidHide () { }
 
